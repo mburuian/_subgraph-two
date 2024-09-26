@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction Viewer</title>
+    <link rel="stylesheet" href="/static/css/styles.css"> <!-- Link to external CSS -->
+</head>
+<body>
+
+    <!-- Navbar Section -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">
+                <h2>Transaction Viewer</h2>
+            </div>
+            <div class="navbar-menu-icon" onclick="toggleMenu()">
+                <!-- Three lines representing the hamburger menu -->
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <div class="navbar-links" id="navbarLinks">
+                <a href="#">Home</a>
+                <a href="/about"><button>About</button></a>
+                <a href="/contact"><button>Contact</button></a>
+            </div>
+        </div>
+    </nav>
+
+    <h1>Transaction Viewer</h1>
+
+    <!-- Transactions Section -->
+    <div id="transactions">
+        {% for transaction in transactions %}
+            <div class="transaction" onclick="toggleDetails('{{ transaction.id }}')">
+                <img src="https://picsum.photos/seed/{{ loop.index }}/40" alt="Avatar" class="avatar">  <!-- Avatar Image -->
+                <div class="info">
+                    <p class="account-id"><strong>Account ID:</strong> {{ transaction.from }}</p>  <!-- Display Account ID -->
+                    <span class="transaction-id">{{ transaction.id }}</span>  <!-- Transaction ID -->
+                </div>
+                <div class="details" id="{{ transaction.id }}">
+                    <p><strong>From:</strong> {{ transaction.from }}</p>
+                    <p><strong>To:</strong> {{ transaction.to }}</p>
+                    <p><strong>Transaction Hash:</strong> {{ transaction.transactionHash }}</p>
+                    <p><strong>Block Timestamp:</strong> {{ transaction.blockTimestamp }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <!-- Mini Profile for displaying owner's transactions -->
+    <div id="mini-profile"></div>
+
+    <script>
+        function toggleMenu() {
+            const navbarLinks = document.getElementById("navbarLinks");
+            navbarLinks.classList.toggle("active");
+        }
+
+        function showMiniProfile(ownerId, transactionId) {
+            const miniProfile = document.getElementById('mini-profile');
+            const profileHtml = `
+                <h3>Transaction History for: ${ownerId}</h3>
+                <div class="profile-transaction">Transaction ID: ${transactionId}</div>
+            `;
+            miniProfile.innerHTML = profileHtml;
+            miniProfile.style.display = 'block';
+            miniProfile.style.top = event.clientY + 'px';
+            miniProfile.style.left = event.clientX + 'px';
+        }
+
+        document.addEventListener('click', function(event) {
+            const miniProfile = document.getElementById('mini-profile');
+            if (!miniProfile.contains(event.target) && event.target.className !== 'transaction') {
+                miniProfile.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

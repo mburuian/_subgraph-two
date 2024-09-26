@@ -1,0 +1,164 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    background-image: url('/static/images/istockphoto-1373119580-1024x1024.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+/* Navbar Styles */
+.navbar {
+    background-color: rgba(207, 255, 217, 0.8);
+    padding: 10px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-logo h2 {
+    color: white;
+    font-family: 'Georgia', serif;
+}
+
+.navbar-menu-icon {
+    cursor: pointer;
+    display: none; /* Initially hidden (for desktop) */
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 4px 0;
+}
+
+/* Navbar Links */
+.navbar-links {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.navbar-links a {
+    color: white;
+    text-decoration: none;
+    padding: 0 15px;
+    font-size: 1.2em;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+}
+
+.navbar-links a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    padding: 10px;
+}
+
+/* Responsive (Hamburger Menu) */
+@media (max-width: 768px) {
+    .navbar-menu-icon {
+        display: block;  /* Show the hamburger menu icon */
+    }
+
+    .navbar-links {
+        display: none; /* Initially hide links */
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background-color: rgba(0, 0, 0, 0.9);
+        width: 100%;
+        height: auto;
+    }
+
+    .navbar-links.active {
+        display: flex;  /* Show the links when menu is active */
+    }
+
+    .navbar-links a {
+        padding: 15px 0;
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* Header Styles */
+h1 {
+    text-align: center;
+    color: white;
+    margin-bottom: 20px;
+    font-family: 'Georgia', serif;
+    font-size: 2.5em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+/* Transaction List Styles */
+#transactions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+/* Individual Transaction Styles */
+.transaction {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 10px;
+    width: 100%;
+    max-width: 700px;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.transaction h2 {
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+/* Avatar Styles */
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.transaction:hover {
+    background-color: #ffcccc;
+}
+
+.details {
+    display: none;
+}
+
+.transaction:hover .details {
+    display: block;
+}
